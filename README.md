@@ -38,8 +38,10 @@ and `paid_date` is still null. That's the only rule locking depends on.
 
 - **No way for a device to authenticate itself.** `devices.device_secret`
   exists as a column but nothing issues or checks it yet.
-- **No dashboard.** This is just the database — a shop owner has no UI to
-  add customers, record payments, or see their numbers. That's Phase 3.
+- ~~No dashboard.~~ Built in the `lockpilot` (website) repo under `/app` —
+  login, customers, devices + installment plans, payment recording, and
+  manual lock/unlock all write to this database directly via Supabase's
+  client library and are enforced by the RLS policies above.
 - **No push notifications.** `should_be_locked` changing in the database
   doesn't yet reach a phone in real time — needs Firebase Cloud Messaging
   wired up from a Supabase Edge Function.
